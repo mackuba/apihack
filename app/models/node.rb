@@ -1,9 +1,10 @@
 class Node < ActiveRecord::Base
   self.inheritance_column = 'kind'
 
-  attr_accessible :value, :arguments, :function, :predicate, :true_branch, :false_branch, :argument
+  attr_accessible :value, :arguments, :function, :predicate, :true_branch, :false_branch, :argument, :type
 
   serialize :arguments
+  serialize :value
 
 
   def self.of_type(kind)

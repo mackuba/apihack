@@ -2,7 +2,8 @@ class CreateNodes < ActiveRecord::Migration
   def change
     create_table :nodes do |t|
       t.string :kind
-      t.integer :value
+      t.string :type
+      t.string :value
       t.integer :function
       t.integer :predicate
       t.integer :true_branch

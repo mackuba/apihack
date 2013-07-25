@@ -23,7 +23,7 @@ class NodesController < ApplicationController
     if error
       render :json => { error: error }, :status => 422
     else
-      args = params.slice(:value, :function, :arguments, :predicate, :true_branch, :false_branch, :argument)
+      args = params.slice(:value, :function, :arguments, :predicate, :true_branch, :false_branch, :argument, :type)
       @node = klass.create(args)
       render :json => @node, :status => :created
     end

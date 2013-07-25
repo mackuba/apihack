@@ -20,7 +20,8 @@ ActiveRecord::Schema.define(:version => 20130725170026) do
 
   create_table "nodes", :force => true do |t|
     t.string  "kind"
-    t.integer "value"
+    t.string  "type"
+    t.string  "value"
     t.integer "function"
     t.integer "predicate"
     t.integer "true_branch"
