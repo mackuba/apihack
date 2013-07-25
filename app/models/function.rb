@@ -4,10 +4,10 @@ class Function < ActiveRecord::Base
   attr_accessible :name, :body
 
   def evaluate(arguments, context)
-    values = arguments.map { |a| Node.find(a).evaluate(context) }
+    values = arguments.map { |a| LazyArgument.new(a, context) }
 
     if name
-      send(name, values)
+      send(name, values.map(&:resolve))
     else
       target.evaluate(values)
     end

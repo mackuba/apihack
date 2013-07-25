@@ -4,7 +4,7 @@ class Argument < Node
   end
 
   def evaluate(context)
-    context[argument]
+    context[argument].resolve
   end
 
   def as_json(*)
