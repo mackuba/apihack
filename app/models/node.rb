@@ -1,11 +1,15 @@
 class Node < ActiveRecord::Base
   self.inheritance_column = 'kind'
 
-  attr_accessible :value
+  attr_accessible :value, :arguments, :function
+
+  serialize :arguments
+
 
   def self.of_type(kind)
     case kind
     when 'constant' then Constant
+    when 'invoke' then Invoke
     else Node
     end
   end
@@ -15,11 +19,6 @@ class Node < ActiveRecord::Base
   end
 
   def as_json(*)
-    {
-      id: id,
-      kind: kind.downcase,
-      type: 'int',
-      value: value
-    }
+    {}
   end
 end

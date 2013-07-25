@@ -6,4 +6,13 @@ class Constant < Node
       'Could not parse integer'
     end
   end
+
+  def as_json(*)
+    {
+      id: id,
+      kind: 'constant',
+      type: 'int',
+      value: value
+    }
+  end
 end

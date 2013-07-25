@@ -5,6 +5,12 @@ class NodesController < ApplicationController
     render :json => @node
   end
 
+  def evaluate
+    @invoke = Invoke.find(params[:id])
+
+    render :json => @invoke.evaluate
+  end
+
   def create
     klass = Node.of_type(params[:kind])
     error = klass.validate(params)
@@ -12,7 +18,7 @@ class NodesController < ApplicationController
     if error
       render :json => { error: error }, :status => 422
     else
-      @node = klass.create(:value => params[:value])
+      @node = klass.create(params.slice(:value, :function, :arguments))
       render :json => @node, :status => :created
     end
   end
