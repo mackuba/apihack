@@ -1,19 +1,19 @@
 class NodesController < ApplicationController
   def show
-    @constant = Constant.find(params[:id])
+    @node = Node.find(params[:id])
 
-    render :json => @constant
+    render :json => @node
   end
 
   def create
-    value = params[:value]
+    klass = Node.of_type(params[:kind])
+    error = klass.validate(params)
 
-    if value.is_a?(Integer)
-      @constant = Constant.create(:value => params[:value])
-
-      render :json => @constant, :status => :created
+    if error
+      render :json => { error: error }, :status => 422
     else
-      render :json => { error: 'Could not parse integer' }, :status => 422
+      @node = klass.create(:value => params[:value])
+      render :json => @node, :status => :created
     end
   end
 end
