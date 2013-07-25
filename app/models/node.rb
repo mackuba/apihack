@@ -18,6 +18,10 @@ class Node < ActiveRecord::Base
     'abstract class'
   end
 
+  def evaluate
+    nil
+  end
+
   def as_json(*)
     {}
   end

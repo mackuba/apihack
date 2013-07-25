@@ -2,17 +2,17 @@ class Function < ActiveRecord::Base
   attr_accessible :name
 
   def evaluate(arguments)
-    nodes = arguments.map { |a| Constant.find(a) }
+    nodes = arguments.map { |a| Node.find(a) }
 
     send(name, nodes)
   end
 
   def add(nodes)
-    nodes.sum(&:value)
+    nodes.map(&:evaluate).inject(&:+)
   end
 
   def mult(nodes)
-    nodes.map(&:value).inject(&:*)
+    nodes.map(&:evaluate).inject(&:*)
   end
 
   def as_json(*)

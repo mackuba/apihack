@@ -7,6 +7,10 @@ class Constant < Node
     end
   end
 
+  def evaluate
+    value
+  end
+
   def as_json(*)
     {
       id: id,

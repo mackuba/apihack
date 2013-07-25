@@ -6,7 +6,7 @@ class Invoke < Node
   end
 
   def evaluate
-    { result: fun.evaluate(arguments) }
+    fun.evaluate(arguments)
   end
 
   def as_json(*)

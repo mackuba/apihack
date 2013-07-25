@@ -8,7 +8,7 @@ class NodesController < ApplicationController
   def evaluate
     @invoke = Invoke.find(params[:id])
 
-    render :json => @invoke.evaluate
+    render :json => { result: @invoke.evaluate }
   end
 
   def create
