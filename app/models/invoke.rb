@@ -14,7 +14,7 @@ class Invoke < Node
       id: id,
       kind: 'invoke',
       function: function,
-      arguments: arguments
+      arguments: arguments || []
     }
   end
 end

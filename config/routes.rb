@@ -5,5 +5,7 @@ Apihack::Application.routes.draw do
     end
   end
 
+  resources :functions
+
   match 'functions/builtin/:id' => 'functions#show'
 end

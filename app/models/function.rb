@@ -1,10 +1,15 @@
 class Function < ActiveRecord::Base
-  attr_accessible :name
+  belongs_to :target, :class_name => 'Node', :foreign_key => 'body'
+
+  attr_accessible :name, :body
 
   def evaluate(arguments)
-    values = arguments.map { |a| Node.find(a).evaluate }
-
-    send(name, values)
+    if name
+      values = arguments.map { |a| Node.find(a).evaluate }
+      send(name, values)
+    else
+      target.evaluate
+    end
   end
 
   def add(values)
@@ -21,7 +26,8 @@ class Function < ActiveRecord::Base
 
   def as_json(*)
     {
-      id: id
+      id: id,
+      body: body
     }
   end
 end

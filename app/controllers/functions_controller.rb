@@ -4,4 +4,10 @@ class FunctionsController < ApplicationController
 
     render :json => @function
   end
+
+  def create
+    @function = Function.create(params.slice(:body))
+
+    render :json => @function, :status => :created
+  end
 end

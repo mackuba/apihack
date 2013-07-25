@@ -14,7 +14,8 @@
 ActiveRecord::Schema.define(:version => 20130725170026) do
 
   create_table "functions", :force => true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "body"
   end
 
   create_table "nodes", :force => true do |t|
