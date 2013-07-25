@@ -25,6 +25,10 @@ class Function < ActiveRecord::Base
     values.first < values.second
   end
 
+  def if(values)
+    values[0] ? values[1] : values[2]
+  end
+
   def as_json(*)
     {
       id: id,
