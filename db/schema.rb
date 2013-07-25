@@ -13,6 +13,10 @@
 
 ActiveRecord::Schema.define(:version => 20130725170026) do
 
+  create_table "functions", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "nodes", :force => true do |t|
     t.string  "kind"
     t.integer "value"
