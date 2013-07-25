@@ -11,6 +11,10 @@ class Function < ActiveRecord::Base
     nodes.sum(&:value)
   end
 
+  def mult(nodes)
+    nodes.map(&:value).inject(&:*)
+  end
+
   def as_json(*)
     {
       id: id
