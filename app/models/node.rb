@@ -1,7 +1,7 @@
 class Node < ActiveRecord::Base
   self.inheritance_column = 'kind'
 
-  attr_accessible :value, :arguments, :function
+  attr_accessible :value, :arguments, :function, :predicate, :true_branch, :false_branch
 
   serialize :arguments
 
@@ -10,6 +10,7 @@ class Node < ActiveRecord::Base
     case kind
     when 'constant' then Constant
     when 'invoke' then Invoke
+    when 'if' then If
     else Node
     end
   end
