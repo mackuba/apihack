@@ -10,4 +10,11 @@ class FunctionsController < ApplicationController
 
     render :json => @function, :status => :created
   end
+
+  def update
+    @function = Function.find(params[:id])
+    @function.update_attributes(params.slice(:body))
+
+    render :json => @function, :status => :created
+  end
 end

@@ -1,13 +1,14 @@
 class Node < ActiveRecord::Base
   self.inheritance_column = 'kind'
 
-  attr_accessible :value, :arguments, :function, :predicate, :true_branch, :false_branch
+  attr_accessible :value, :arguments, :function, :predicate, :true_branch, :false_branch, :argument
 
   serialize :arguments
 
 
   def self.of_type(kind)
     case kind
+    when 'argument' then Argument
     when 'constant' then Constant
     when 'invoke' then Invoke
     when 'if' then If
@@ -19,7 +20,7 @@ class Node < ActiveRecord::Base
     'abstract class'
   end
 
-  def evaluate
+  def evaluate(*)
     nil
   end
 

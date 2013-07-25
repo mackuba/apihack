@@ -5,8 +5,12 @@ class Invoke < Node
     nil
   end
 
-  def evaluate
-    fun.evaluate(arguments)
+  def args
+    arguments || []
+  end
+
+  def evaluate(context)
+    fun.evaluate(args, context)
   end
 
   def as_json(*)
@@ -14,7 +18,7 @@ class Invoke < Node
       id: id,
       kind: 'invoke',
       function: function,
-      arguments: arguments || []
+      arguments: args
     }
   end
 end

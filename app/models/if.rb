@@ -7,8 +7,8 @@ class If < Node
     nil
   end
 
-  def evaluate
-    condition.evaluate ? true_result.evaluate : false_result.evaluate
+  def evaluate(context)
+    condition.evaluate(context) ? true_result.evaluate(context) : false_result.evaluate(context)
   end
 
   def as_json(*)

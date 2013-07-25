@@ -7,6 +7,7 @@ class CreateNodes < ActiveRecord::Migration
       t.integer :predicate
       t.integer :true_branch
       t.integer :false_branch
+      t.integer :argument
       t.string :arguments
     end
   end

@@ -3,12 +3,13 @@ class Function < ActiveRecord::Base
 
   attr_accessible :name, :body
 
-  def evaluate(arguments)
+  def evaluate(arguments, context)
+    values = arguments.map { |a| Node.find(a).evaluate(context) }
+
     if name
-      values = arguments.map { |a| Node.find(a).evaluate }
       send(name, values)
     else
-      target.evaluate
+      target.evaluate(values)
     end
   end
 

@@ -7,7 +7,7 @@ class Constant < Node
     end
   end
 
-  def evaluate
+  def evaluate(*)
     value
   end
 

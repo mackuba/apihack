@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130725170026) do
     t.integer "predicate"
     t.integer "true_branch"
     t.integer "false_branch"
+    t.integer "argument"
     t.string  "arguments"
   end
 
